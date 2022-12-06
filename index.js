@@ -47,11 +47,17 @@ client.on('interactionCreate', (int) => {
 
               return  int.reply(` El usuario ${usuario}, No esta escrito correctamente, porfavor vuelve a intentarlo!`);
 
-            } else if(response.data.players[0].GuildName !== 'La Federacion Y' || response.data.players[0].GuildName === '') {
+            }
+            else if(response.data.players[0].GuildName === '')    {
 
-              return  int.reply(` El usuario ${response.data.players[0].Name}, No pertenece a La Federacion Y :cry: , No esperes a unirte con nosotros `);
+                return  int.reply(` El usuario ${response.data.players[0].Name} aun no tiene gremio, no esperes para ser parte nuestra comunidad  :beers:  `);
+  
+            }
+             else if(response.data.players[0].GuildName !== 'La Federacion Y' ) {
 
-            }    
+              return  int.reply(` El usuario ${response.data.players[0].Name} actualmente esta en el gremio ${response.data.players[0].GuildName}, Si deseas unirte al gremio debes primero abandonar en el que estas. `);
+
+            } 
             
             int.reply(` El usuario ${usuario}, se ha registrado en el servidor, Bienvenido! :green_heart:  `);
 
