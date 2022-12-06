@@ -23,6 +23,7 @@ client.on('ready', () => {
                     description: 'El usuario que se desea registrar',
                     required: true
                 }
+
             ]
         }
     ])
@@ -33,41 +34,54 @@ client.on('ready', () => {
 
 // 
 
-client.on('interactionCreate', (int) => {
+    client.on('interactionCreate', (int) => {
 
-    if(int.isCommand() && int.commandName === 'registro') {
-
-        const usuario = int.options.getString('user')
-
-        axios.get(`https://gameinfo.albiononline.com/api/gameinfo/search?q=${usuario}`)
-
-        .then(function (response) {           
+        if(int.isCommand() && int.commandName === 'registro') {
+    
+            const nickname = int.options.getString('user')
+           
+           // console.log(int);
+           // console.log(int.member.roles);
+    
+           
          
-            if(response.data.players.length === 0) {
-
-              return  int.reply(` El usuario ${usuario}, No esta escrito correctamente, porfavor vuelve a intentarlo!`);
-
-            }
-            else if(response.data.players[0].GuildName === '')    {
-
-                return  int.reply(` El usuario ${response.data.players[0].Name} aun no tiene gremio, no esperes para ser parte nuestra comunidad  :beers:  `);
-  
-            }
-             else if(response.data.players[0].GuildName !== 'La Federacion Y' ) {
-
-              return  int.reply(` El usuario ${response.data.players[0].Name} actualmente esta en el gremio ${response.data.players[0].GuildName}, Si deseas unirte al gremio debes primero abandonar en el que estas. `);
-
-            } 
             
-            int.reply(` El usuario ${usuario}, se ha registrado en el servidor, Bienvenido! :green_heart:  `);
-
-        })
-
-
-       
-        
-    }
-})
+    
+            axios.get(`https://gameinfo.albiononline.com/api/gameinfo/search?q=${nickname}`)
+    
+            .then(function (response) {           
+             
+                if(response.data.players.length === 0) {
+    
+                  return  int.reply(` El usuario ${nickname}, No esta escrito correctamente, porfavor vuelve a intentarlo!`);
+    
+                }
+                else if(response.data.players[0].GuildName === '')    {
+    
+                    return  int.reply(` El usuario ${response.data.players[0].Name} aun no tiene gremio, no esperes para ser parte nuestra comunidad  :beers:  `);
+                    
+                }
+                 else if(response.data.players[0].GuildName !== 'La Federacion Y' ) {
+    
+                  return  int.reply(` El usuario ${response.data.players[0].Name} actualmente esta en el gremio ${response.data.players[0].GuildName}, Si deseas unirte al gremio debes primero abandonar en el que estas. `);
+    
+                } 
+            
+                    int.member.roles.add('955948751338471455');
+                    int.member.setNickname(nickname);
+              
+               
+                            
+                return int.reply(` El usuario ${nickname}, se ha registrado en el servidor, Bienvenido! :green_heart:  `);
+              
+    
+            })
+    
+    
+           
+            
+        }
+    })
 
 
 
