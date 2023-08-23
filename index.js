@@ -4,12 +4,25 @@ require('dotenv').config();
 
 const client = new Discord.Client({intents: 32767});
 
+const infiteLoop = async (j) => {
+    if(j === 100) {
+        j = 0
+        console.clear();
+    }
+    let i = j + 1
+    setTimeout(() => {
+        console.log(j)
+        infiteLoop(i); 
+    }, 5000);
+    
+    
+   
+}
 
 client.on('ready', () => {
 
     console.log(`El bot esta listo, su nombre es: ${client.user.tag}`)
-
-
+    infiteLoop(0);
 // Lista De comandos
 
     client.application.commands.set([
