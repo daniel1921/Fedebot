@@ -22,7 +22,7 @@ const infiteLoop = async (j) => {
 client.on('ready', () => {
 
     console.log(`El bot esta listo, su nombre es: ${client.user.tag}`)
-    infiteLoop(0);
+ //   infiteLoop(0);
 // Lista De comandos
 
     client.application.commands.set([
