@@ -30,6 +30,7 @@ client.on("ready", () => {
 //
 try {
     client.on("interactionCreate", (int) => {
+
         if (int.isCommand() && int.commandName === "registro") {
           const nickname = int.options.getString("user");
       
@@ -77,19 +78,9 @@ try {
                 }
               } else if (!estaElPlayer) {
                 return int.reply(
-                  ` Hubo un problema al momento de registrarte, probablemente no estes en el gremio, no esperes para ser parte nuestra comunidad  :beers: `
+                  ` Hubo un problema al momento de registrarte con el usuario de ${nickname}, probablemente no estes en el gremio, no esperes para ser parte nuestra comunidad  :beers: `
                 );
               }
-              // else if(response.data.players[0].GuildName === '')    {
-      
-              //     return  int.reply(` El usuario ${response.data.players[0].Name} aun no tiene gremio, no esperes para ser parte nuestra comunidad  :beers:  `);
-      
-              // }
-              //  else if(response.data.players[0].GuildName !== 'La Federacion Y' ) {
-      
-              //   return  int.reply(` El usuario ${response.data.players[0].Name} actualmente esta en el gremio ${response.data.players[0].GuildName}, Si deseas unirte al gremio debes primero abandonar en el que estas. `);
-      
-              // }
             });
         }
       });
